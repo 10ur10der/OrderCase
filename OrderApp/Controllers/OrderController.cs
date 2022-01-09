@@ -39,7 +39,6 @@ namespace OrderApp.Controllers
         }
 
         [HttpGet(template: "getbyId/{customerOrderNo}")]
-        //[Route("GetOrderDetailsById/{customerOrderNo}")]
         public IActionResult GetOrderDetailsById(string customerOrderNo)
         {
             var result = _orderService.GetById(customerOrderNo);
@@ -91,17 +90,27 @@ namespace OrderApp.Controllers
         [HttpPost(template: "status")]
         public IActionResult UpdateStatus(OrderStatus order)
         {
-            var orderItem = _orderService.GetById(order.CustomerOrderNo);
 
-            orderItem.Data.Status = (StatusEnum)order.StatusValue;
-
-            var result = _orderService.Update(orderItem.Data);
-
-            if (result.Status)
+            try
             {
-                return Ok(result.Message);
+                var orderItem = _orderService.GetById(order.CustomerOrderNo);
+
+                orderItem.Data.Status = (StatusEnum)order.StatusValue;
+
+                var result = _orderService.Update(orderItem.Data);
+
+                if (result.Status)
+                {
+                    return Ok(result.Message);
+                }
+                return BadRequest(result.Message);
             }
-            return BadRequest(result.Message);
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+            
         }
 
 

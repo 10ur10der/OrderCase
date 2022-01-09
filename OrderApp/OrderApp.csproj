@@ -25,8 +25,12 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\counter\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\counter\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\counter\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\app\counter\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -36,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\counter\counter.component.html" />
+    <None Remove="ClientApp\src\app\counter\counter.component.spec.ts" />
+    <None Remove="ClientApp\src\app\counter\counter.component.ts" />
     <None Remove="ClientApp\src\app\employeeServicesModel\orderClass.ts" />
     <None Remove="ClientApp\src\app\employeeServicesModel\orderServices.ts" />
     <None Remove="ClientApp\src\app\employeeServicesModel\Status.ts" />
