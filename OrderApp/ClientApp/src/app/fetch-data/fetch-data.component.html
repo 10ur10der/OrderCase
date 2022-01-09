@@ -1,0 +1,73 @@
+<h1 id="tableLabel">Sipariş Listesi</h1>
+
+
+
+<!--<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-primary me-md-2" type="button" (click)="myFunc()">Düzenle</button>
+</div>-->
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="orders">
+  <thead>
+    <tr>
+      <th>Seçiniz</th>
+      <th>Müşteri Sipariş No</th>
+      <th>Çıkış Adresi</th>
+      <th>Varış Adresi</th>
+      <th>Miktar</th>
+      <th>Miktar Birim</th>
+      <th>Ağırlık</th>
+      <th>Ağırlık Birim</th>
+      <th>Malzeme Kodu</th>
+      <th>Not</th>
+      <th>Statü</th>
+      <th>İşlem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders | async">
+      <td>
+        <!--<input type="checkbox" [value]="order.customerOrderNo" (change)="onCheckboxChange($event)" />-->
+        <!--<input type="checkbox" id="{{order.customerOrderNo}}" name="myData" [(ngModel)]="isChecked">-->
+
+        <input type="radio" value="{{order.customerOrderNo}}"
+               [(ngModel)]="orderChecked" name="gob"  [checked]="false"
+               (change)="onItemChange(order.customerOrderNo)" />
+
+      </td>
+      <td>{{ order.customerOrderNo }}</td>
+      <td>{{ order.departureAddress }}</td>
+      <td>{{ order.destinationAddress }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.quantityType }}</td>
+      <td>{{ order.weight }}</td>
+      <td>{{ order.weightType }}</td>
+      <td>{{ order.productCode }}</td>
+      <td>{{ order.note }}</td>
+      <td>{{ order.status }}</td>
+      <td> <button class="btn btn-primary me-md-2" type="button" (click)="loadOrderToEdit(order.customerOrderNo)">Düzenle</button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<div *ngIf="isEdit">
+  <h2>Siparişi Düzenle</h2>
+  Müşteri Sipariş No :
+  <br>
+  <input type="text" class="form-control" [(ngModel)]="customerOrderNoEdit" />
+  <br> Statü &nbsp; :
+  <br>
+  <!--<input type="text" [(ngModel)]="statusEdit" />-->
+
+  <div>
+    <select [(ngModel)]="status">
+      <option *ngFor="let x of statusItem" [ngValue]="x.statusValue">{{x.name}}</option>
+    </select>
+  </div>
+  <br />
+  <div class="d-grid gap-2 d-md-flex justify-content-md-middle">
+    <button class="btn btn-primary me-md-2" type="button" (click)="cancel()">Vazgeç</button>
+    <button class="btn btn-primary me-md-2" type="button" (click)="save()">Kaydet</button>
+  </div>
+
+</div>
