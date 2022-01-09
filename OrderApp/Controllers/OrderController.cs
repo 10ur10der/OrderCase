@@ -96,6 +96,7 @@ namespace OrderApp.Controllers
                 var orderItem = _orderService.GetById(order.CustomerOrderNo);
 
                 orderItem.Data.Status = (StatusEnum)order.StatusValue;
+                orderItem.Data.ChangeDate = DateTime.Now;  
 
                 var result = _orderService.Update(orderItem.Data);
 

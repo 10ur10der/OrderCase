@@ -30,6 +30,8 @@ namespace Entities.Concrete
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public StatusEnum Status { get; set; }
 
+        public DateTime ChangeDate { get; set; }
+
     }
 
     [JsonConverter(typeof(JsonStringEnumConverter))]

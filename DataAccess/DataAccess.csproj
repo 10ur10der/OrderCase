@@ -19,6 +19,8 @@
     <Compile Include="Migrations\20220109012743_init.Designer.cs" />
     <Compile Include="Migrations\20220109111806_updateOrderModel.cs" />
     <Compile Include="Migrations\20220109111806_updateOrderModel.Designer.cs" />
+    <Compile Include="Migrations\20220109233025_orderModelAddDate.cs" />
+    <Compile Include="Migrations\20220109233025_orderModelAddDate.Designer.cs" />
     <Compile Include="Migrations\BorusanContextModelSnapshot.cs" />
   </ItemGroup>
 
